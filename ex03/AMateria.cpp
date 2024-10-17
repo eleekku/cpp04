@@ -29,3 +29,11 @@ std::string AMateria::getType() const
     return (_type);
 }
 
+void AMateria::use(ICharacter &target)
+{
+    std::cout << "AMateria use" << std::endl;
+    (void)target;
+}
+
+
+
