@@ -1,21 +1,23 @@
 #pragma once
 
-#include <iostream>
 #include "ICharacter.hpp"
+#include "mainh.hpp"
 
-class AMateria
-{
+class AMateria {
     protected:
         std::string _type;
     
     public:
         AMateria();
-        AMateria(const std::string &type);
+        AMateria(std::string const & type);
         virtual ~AMateria();
-        AMateria(const AMateria &other);
-        AMateria &operator=(const AMateria &other);
+        AMateria(AMateria const & src);
+        virtual AMateria & operator=(AMateria const & src);
 
-        std::string getType() const;
+        std::string const & getType() const; // Returns the materia type
+
         virtual AMateria* clone() const = 0;
-        virtual void use(ICharacter &target) = 0;
+        virtual void use(ICharacter& target);
+
+
 };

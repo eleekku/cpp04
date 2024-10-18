@@ -1,9 +1,9 @@
 #pragma once
 
 #include "AMateria.hpp"
+#include "mainh.hpp"
 
-class ICharacter
-{
+class ICharacter {
     public:
         virtual ~ICharacter() {}
         virtual std::string const & getName() const = 0;

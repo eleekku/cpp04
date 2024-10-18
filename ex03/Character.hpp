@@ -1,17 +1,21 @@
 #pragma once
 
-class Character : public ICharacter
-{
+#include "mainh.hpp"
+
+class Character : public ICharacter {
+    private:
+        std::string _name;
+        AMateria* _inventory[4];
+    
     public:
         Character();
-        virtual ~Character();
-        Character(const Character &other);
-        Character &operator=(const Character &other);
+        Character(std::string const & name);
+        Character(Character const & src);
+        Character & operator=(Character const & src);
+        ~Character();
 
-        Character(const std::string &name);
-        virtual std::string const &getName() const;
-        virtual void equip(AMateria* m);
-        virtual void unequip(int idx);
-        virtual void use(int idx, ICharacter& target);
-
+        std::string const & getName() const;
+        void equip(AMateria* m);
+        void unequip(int idx);
+        void use(int idx, ICharacter& target);
 };

@@ -1,17 +1,14 @@
 #pragma once
 
-#include "AMateria.hpp"
+#include "mainh.hpp"
 
-class Cure : public AMateria
-{
-    private:
-        std::string _type;
+class Cure : public AMateria {
     public:
         Cure();
-        virtual ~Cure();
-        Cure(const Cure &other);
-        Cure &operator=(const Cure &other);
-        void use(ICharacter &target) override;
+        Cure(Cure const & src);
+        Cure & operator=(Cure const & src);
+        ~Cure();
 
-        AMateria* clone() const;
+        AMateria* clone() const override;
+        void use(ICharacter& target);
 };

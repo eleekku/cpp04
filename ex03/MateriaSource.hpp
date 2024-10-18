@@ -1,20 +1,18 @@
 #pragma once
 
-#include "AMateria.hpp"
+#include "mainh.hpp"
 
 class MateriaSource : public IMateriaSource {
-
     private:
-        static const int MAX_MATERIA = 4;
-        AMateria* _materia[MAX_MATERIA];
-        int _materiaCount;
-
+        AMateria* _source[4];
+        int _count;
+    
     public:
         MateriaSource();
-        virtual ~MateriaSource();
-        MateriaSource(const MateriaSource &other);
-        MateriaSource &operator=(const MateriaSource &other);
+        MateriaSource(MateriaSource const & src);
+        MateriaSource & operator=(MateriaSource const & src);
+        ~MateriaSource();
 
         void learnMateria(AMateria* m) override;
-        AMateria* createMateria(const std::string& type) override;
+        AMateria* createMateria(std::string const & type) override;
 };

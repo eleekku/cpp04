@@ -1,17 +1,15 @@
 #pragma once
 
-#include "AMateria.hpp"
-#include <iostream>
+#include "mainh.hpp"
 
-class Ice : public AMateria
-{
-    private:
-        std::string _type;
+class Ice : public AMateria {
     public:
-        Ice();
-        virtual ~Ice();
-        Ice(const Ice &other);
-        Ice &operator=(const Ice &other);
-        void use(ICharacter &target) override;
-        AMateria* clone() const;
+		Ice();
+		Ice(Ice const & src);
+		Ice & operator=(Ice const & src);
+		~Ice();
+
+		AMateria* clone() const override;
+		virtual void use(ICharacter& target) override;
+
 };

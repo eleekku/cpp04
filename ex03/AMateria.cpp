@@ -1,39 +1,27 @@
+#pragma once
+
 #include "AMateria.hpp"
 
-AMateria::AMateria() : _type("default")
-{
-    std::cout << "AMateria default constructor" << std::endl;
+AMateria::AMateria () : _type("default") {}
+
+AMateria::AMateria (std::string const & type) : _type(type) {}
+
+AMateria::AMateria(AMateria const & src) {
+    *this = src;
 }
 
-AMateria::~AMateria()
-{
-    std::cout << "AMateria destructor" << std::endl;
+AMateria & AMateria::operator=(AMateria const & src) {
+    if (this != &src)
+        this->_type = src._type;
+    return *this;
 }
 
-AMateria::AMateria(const AMateria &other) : _type(other._type)
-{
-    std::cout << "AMateria copy constructor" << std::endl;
+std::string const & AMateria::getType() const {
+    return _type;
 }
 
-AMateria &AMateria::operator=(const AMateria &other)
-{
-    std::cout << "AMateria assignment operator" << std::endl;
-    if (this == &other)
-        return (*this);
-    _type = other._type;
-    return (*this);
-}
-
-std::string AMateria::getType() const
-{
-    return (_type);
-}
-
-void AMateria::use(ICharacter &target)
-{
-    std::cout << "AMateria use" << std::endl;
+void AMateria::use(ICharacter& target) {
     (void)target;
 }
 
-
-
+AMateria::~AMateria() {}
