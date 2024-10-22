@@ -19,6 +19,8 @@ MateriaSource & MateriaSource::operator=(MateriaSource const & src) {
             }
             if (src._source[i])
                 _source[i] = src._source[i]->clone();
+            else
+                _source[i] = nullptr;
         }
     }
     return *this;
@@ -45,5 +47,5 @@ AMateria* MateriaSource::createMateria(std::string const & type) {
         if (_source[i] && _source[i]->getType() == type)
             return _source[i]->clone();
     }
-    return NULL;
+    return nullptr;
 }

@@ -1,6 +1,7 @@
 #pragma once
 
-#include "mainh.hpp"
+#include "AMateria.hpp"
+class AMateria;
 
 class Ice : public AMateria {
     public:
@@ -9,7 +10,7 @@ class Ice : public AMateria {
 		Ice & operator=(Ice const & src);
 		~Ice();
 
-		AMateria* clone() const override;
-		virtual void use(ICharacter& target) override;
+		AMateria* clone() const;
+		void use(ICharacter& target);
 
 };

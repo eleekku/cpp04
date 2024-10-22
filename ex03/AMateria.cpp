@@ -1,5 +1,3 @@
-#pragma once
-
 #include "AMateria.hpp"
 
 AMateria::AMateria () : _type("default") {}
@@ -18,10 +16,6 @@ AMateria & AMateria::operator=(AMateria const & src) {
 
 std::string const & AMateria::getType() const {
     return _type;
-}
-
-void AMateria::use(ICharacter& target) {
-    (void)target;
 }
 
 AMateria::~AMateria() {}

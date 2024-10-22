@@ -1,12 +1,11 @@
-#pragma once
-
 #include "Ice.hpp"
 
 Ice::Ice() : AMateria("ice") {}
 
-Ice::Ice(Ice const & src) {
+Ice::Ice(Ice const & src)  {
     *this = src;
 }
+
 
 Ice & Ice::operator=(Ice const & src){
     if (this != &src)
@@ -23,3 +22,4 @@ AMateria* Ice::clone() const {
 void Ice::use(ICharacter& target) {
     std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
+

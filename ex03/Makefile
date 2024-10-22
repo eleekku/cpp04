@@ -1,6 +1,6 @@
 NAME		=	Materials
 
-SRC			=	main.cpp Amateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
+SRC			=	main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
 
 OBJS		=	$(SRC:.cpp=.o)
 
@@ -8,9 +8,9 @@ COMPILE		=	c++
 
 FLAGS		=	-Wall -Wextra -Werror -std=c++17 
 
-EXE_NAME	=	-o AbstractAnimal
+EXE_NAME	=	-o Materials
 
-EXEC		=	AbstractAnimal
+EXEC		=	Materials
 
 # ------------------------------------- RULES ---------------------------------
 all: $(NAME)
