@@ -5,7 +5,7 @@
 
 class ICharacter;
 
-class Character : public ICharacter {
+class Character {
     private:
         std::string _name;
         AMateria* _inventory[4];
