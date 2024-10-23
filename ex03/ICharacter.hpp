@@ -1,7 +1,6 @@
 #pragma once
 
 #include "AMateria.hpp"
-#include "mainh.hpp"
 
 class ICharacter {
     public:
