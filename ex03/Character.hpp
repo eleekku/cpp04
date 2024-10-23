@@ -1,6 +1,9 @@
 #pragma once
 
+#include "ICharacter.hpp"
 #include "mainh.hpp"
+
+class ICharacter;
 
 class Character : public ICharacter {
     private:

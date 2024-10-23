@@ -1,7 +1,6 @@
 #pragma once
 
 #include "AMateria.hpp"
-class AMateria;
 
 class Ice : public AMateria {
     public:
