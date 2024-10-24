@@ -15,7 +15,7 @@ AMateria & AMateria::operator=(AMateria const & src) {
 }
 
 std::string const & AMateria::getType() const {
-    return _type;
+        return _type;
 }
 
 AMateria::~AMateria() {}

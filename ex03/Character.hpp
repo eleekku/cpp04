@@ -1,15 +1,20 @@
 #pragma once
 
 #include "ICharacter.hpp"
-#include "mainh.hpp"
 
 class ICharacter;
+
+struct Node {
+    AMateria* materia;
+    Node* next;
+};
 
 class Character : public ICharacter {
     private:
         std::string _name;
         AMateria* _inventory[4];
-    
+        Node* _head;
+
     public:
         Character();
         Character(std::string const & name);
@@ -18,6 +23,7 @@ class Character : public ICharacter {
         ~Character();
 
         std::string const & getName() const;
+        std::string getSlot(int idx) const;
         void equip(AMateria* m);
         void unequip(int idx);
         void use(int idx, ICharacter& target);

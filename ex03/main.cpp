@@ -1,4 +1,7 @@
-#include "mainh.hpp"
+#include "MateriaSource.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
+#include "Character.hpp"
 
 int main()
 {
@@ -9,10 +12,32 @@ int main()
     AMateria* tmp;
     tmp = src->createMateria("ice");
     me->equip(tmp);
-    tmp = src->createMateria("cure");
+    me->unequip(0);
+    //tmp = src->createMateria("cure");
+    me->equip(tmp);
+    tmp = src->createMateria("ice");
     me->equip(tmp);
     ICharacter* bob = new Character("bob");
-    me->use(0, *bob);
+    tmp = src->createMateria("ice");
+    me->equip(tmp);
+    tmp = src->createMateria("ice");
+    me->equip(tmp);
+    tmp = src->createMateria("ice");
+   me->equip(tmp);
+       tmp = src->createMateria("ice");
+   me->equip(tmp);  tmp = src->createMateria("ice");
+   me->equip(tmp);  tmp = src->createMateria("ice");
+   me->equip(tmp);  tmp = src->createMateria("ice");
+   me->equip(tmp);  tmp = src->createMateria("ice");
+   me->equip(tmp);
+    std::cout << me->getSlot(0) << std::endl;
+    std::cout << me->getSlot(1) << std::endl;
+    std::cout << me->getSlot(2) << std::endl;
+   me->unequip(1);
+    me->unequip(2);
+    me->unequip(3);
+    std::cout << me->getSlot(3) << std::endl;
+
     me->use(1, *bob);
     delete bob;
     delete me;

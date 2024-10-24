@@ -1,11 +1,11 @@
 #include "Character.hpp"
 
-Character::Character() : _name("default") {
+Character::Character() : _name("default"), _head(nullptr) {
     for (int i = 0; i < 4; i++)
         _inventory[i] = NULL;
 }
 
-Character::Character(std::string const & name) : _name(name) {
+Character::Character(std::string const & name) : _name(name), _head(nullptr) {
     for (int i = 0; i < 4; i++)
         _inventory[i] = NULL;
 }
@@ -25,6 +25,28 @@ Character & Character::operator=(Character const & src) {
             if (src._inventory[i])
                 _inventory[i] = src._inventory[i]->clone();
         }
+    // Clear the existing linked list
+    Node* current = _head;
+    while (current) {
+        Node* next = current->next;
+        delete current->materia;
+        delete current;
+        current = next;
+    }
+    _head = nullptr;
+    // Copy the linked list from src
+    Node* srcCurrent = src._head;
+    Node** destCurrent = &_head;
+    while (srcCurrent) {
+        *destCurrent = new Node();
+        if (srcCurrent->materia)
+            (*destCurrent)->materia = srcCurrent->materia->clone();
+        else
+            (*destCurrent)->materia = nullptr;
+        (*destCurrent)->next = nullptr;
+        srcCurrent = srcCurrent->next;
+        destCurrent = &((*destCurrent)->next);
+        }
     }
     return *this;
 }
@@ -33,18 +55,48 @@ std::string const & Character::getName() const {
     return _name;
 }
 
+std::string Character::getSlot(int idx) const {
+    if (idx >= 0 && idx <= 3 && _inventory[idx])
+        return (_inventory[idx]->getType());
+    return ("no slot");
+}
+
 void Character::equip(AMateria* m) {
+        // Check if the materia is already in the linked list
+    Node* prev = nullptr;
+    Node* current = _head;
+
+    while (current) {
+        if (current->materia == m) {
+            // If we find the materia in the linked list, remove it
+            if (prev == nullptr)
+                _head = current->next;
+            else
+                prev->next = current->next;
+            delete current;  // Free the Node, but not the materia
+            break;
+        }
+        prev = current;
+        current = current->next;
+    }
+
     for (int i = 0; i < 4; i++) {
         if (!_inventory[i]) {
             _inventory[i] = m;
-            break;
+            return;
         }
     }
+    delete m;
 }
 
 void Character::unequip(int idx) {
-    if (idx >= 0 && idx < 4)
-        _inventory[idx] = NULL;
+    if (idx >= 0 && idx < 4 && _inventory[idx]) {
+        Node* newNode = new Node();
+        newNode->materia = _inventory[idx];
+        newNode->next = _head;
+        _head = newNode;
+        _inventory[idx] = nullptr;
+    }
 }
 
 void Character::use(int idx, ICharacter& target) {
@@ -58,5 +110,13 @@ Character::~Character() {
             delete _inventory[i];
             _inventory[i] = NULL;
         }
+    }
+    Node* current = _head;
+    while (current) {
+        Node* next = current->next;
+        if (current->materia)
+            delete current->materia;
+        delete current;
+        current = next;
     }
 }

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "mainh.hpp"
-class AMateria;
+#include "AMateria.hpp"
+#include "ICharacter.hpp"
 
 class Cure : public AMateria {
     public:
