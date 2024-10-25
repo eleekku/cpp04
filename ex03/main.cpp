@@ -33,6 +33,7 @@ int main()
 	tmp = src->createMateria("ice");
 
 	me->equip(tmp);
+	tmp = src->createMateria("ice");
 
 //	me->unequip(1);
 	me->unequip(2);
@@ -43,5 +44,6 @@ int main()
 	delete me;
 	delete src;
 	delete test;
+	delete tmp;
 	return 0;
 }
