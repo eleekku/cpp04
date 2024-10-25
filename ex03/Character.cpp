@@ -55,12 +55,6 @@ std::string const & Character::getName() const {
     return _name;
 }
 
-std::string Character::getSlot(int idx) const {
-    if (idx >= 0 && idx <= 3 && _inventory[idx])
-        return (_inventory[idx]->getType());
-    return ("no slot");
-}
-
 void Character::equip(AMateria* m) {
     if (!m) {
         std::cout << this->getName() <<": There is nothing to equip" << std::endl;
