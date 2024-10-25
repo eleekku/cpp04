@@ -39,7 +39,9 @@ void MateriaSource::learnMateria(AMateria* m) {
     if (_count < 4 && m) {
         _source[_count] = m;
         _count++;
+        return ;
     }
+    delete m;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
