@@ -62,6 +62,14 @@ std::string Character::getSlot(int idx) const {
 }
 
 void Character::equip(AMateria* m) {
+    if (!m) {
+        std::cout << this->getName() <<": There is nothing to equip" << std::endl;
+        return ;
+    }
+    if (m->getowner()) {// If is already equiped
+        std::cout << this->getName() << ": The material is equiped by someone else" << std::endl;
+        return ;
+    }
         // Check if the materia is already in the linked list
     Node* prev = nullptr;
     Node* current = _head;
@@ -83,6 +91,7 @@ void Character::equip(AMateria* m) {
     for (int i = 0; i < 4; i++) {
         if (!_inventory[i]) {
             _inventory[i] = m;
+            _inventory[i]->setowner(true);
             return;
         }
     }
@@ -93,6 +102,7 @@ void Character::unequip(int idx) {
     if (idx >= 0 && idx < 4 && _inventory[idx]) {
         Node* newNode = new Node();
         newNode->materia = _inventory[idx];
+        newNode->materia->setowner(true);
         newNode->next = _head;
         _head = newNode;
         _inventory[idx] = nullptr;
